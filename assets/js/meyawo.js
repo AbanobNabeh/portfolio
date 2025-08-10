@@ -2,7 +2,7 @@
 document.addEventListener('DOMContentLoaded', () => {
   // Typewriter effect (simple)
   const typedEl = document.getElementById('typed-name');
-  const texts = ['Abanoub Nabeh', 'Flutter Developer', 'Laravel & API Specialist'];
+  const texts = ['Abanob Nabeh', 'Flutter Developer', 'Laravel & API Specialist'];
   let ti = 0, ci = 0, forward = true;
   function typeLoop() {
     const t = texts[ti];
