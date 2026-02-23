@@ -1,142 +1,1201 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" data-theme="dark">
+
 <head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Abanob Nabeh — Portfolio</title>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Abanob Nabeh — Flutter Developer</title>
+  <meta name="description"
+    content="Flutter Developer specialized in high-performance cross-platform mobile apps. Built with Laravel, Firebase, and Clean Architecture." />
+  <meta name="keywords" content="Flutter Developer, Dart, Mobile Development, Cairo, Egypt, Firebase, Laravel" />
+  <meta name="author" content="Abanob Nabeh" />
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link
+    href="https://fonts.googleapis.com/css2?family=Space+Mono:wght@400;700&family=Syne:wght@400;600;700;800&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;1,9..40,300&display=swap"
+    rel="stylesheet">
 
-  <!-- Fonts & Icons -->
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
-  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
-<link rel="icon" href="assets/imgs/profile_11186732.png" type="image/png" />
+  <style>
+    :root {
+      --bg: #060912;
+      --bg2: #0d1224;
+      --bg3: #111827;
+      --card: #0f1729;
+      --card2: #141d35;
+      --border: rgba(99, 179, 237, 0.12);
+      --border2: rgba(99, 179, 237, 0.22);
+      --accent: #38bdf8;
+      --accent2: #818cf8;
+      --accent3: #34d399;
+      --text: #e2e8f0;
+      --text2: #94a3b8;
+      --text3: #64748b;
+      --hero-glow: rgba(56, 189, 248, 0.15);
+      --tag-bg: rgba(56, 189, 248, 0.08);
+      --tag-text: #7dd3fc;
+      --nav-bg: rgba(6, 9, 18, 0.88);
+    }
 
-  <!-- Main styles -->
-    <link rel="stylesheet" href="assets/css/meyawo.css">
+    [data-theme="light"] {
+      --bg: #f1f5fd;
+      --bg2: #e8eef9;
+      --bg3: #dce6f5;
+      --card: #ffffff;
+      --card2: #f0f5fd;
+      --border: rgba(56, 130, 220, 0.15);
+      --border2: rgba(56, 130, 220, 0.3);
+      --accent: #1d72b8;
+      --accent2: #5c55e0;
+      --accent3: #059669;
+      --text: #0f172a;
+      --text2: #334155;
+      --text3: #64748b;
+      --hero-glow: rgba(29, 114, 184, 0.1);
+      --tag-bg: rgba(29, 114, 184, 0.08);
+      --tag-text: #1d72b8;
+      --nav-bg: rgba(241, 245, 253, 0.92);
+    }
+
+    *,
+    *::before,
+    *::after {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    html {
+      scroll-behavior: smooth;
+      font-size: 16px;
+    }
+
+    body {
+      font-family: 'DM Sans', sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      line-height: 1.6;
+      overflow-x: hidden;
+      transition: background 0.4s, color 0.4s;
+    }
+
+    /* ── SCROLLBAR ── */
+    ::-webkit-scrollbar {
+      width: 5px;
+    }
+
+    ::-webkit-scrollbar-track {
+      background: var(--bg);
+    }
+
+    ::-webkit-scrollbar-thumb {
+      background: var(--accent);
+      border-radius: 3px;
+    }
+
+    /* ── GRID BACKGROUND ── */
+    body::before {
+      content: '';
+      position: fixed;
+      inset: 0;
+      background-image:
+        linear-gradient(var(--border) 1px, transparent 1px),
+        linear-gradient(90deg, var(--border) 1px, transparent 1px);
+      background-size: 60px 60px;
+      pointer-events: none;
+      z-index: 0;
+      opacity: 0.5;
+    }
+
+    /* ── NAV ── */
+    nav {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      z-index: 1000;
+      background: var(--nav-bg);
+      backdrop-filter: blur(16px);
+      border-bottom: 1px solid var(--border);
+      padding: 0 clamp(1.5rem, 5vw, 4rem);
+      height: 64px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      transition: background 0.4s;
+    }
+
+    .nav-logo {
+      font-family: 'Space Mono', monospace;
+      font-size: 1.05rem;
+      font-weight: 700;
+      color: var(--accent);
+      letter-spacing: -0.02em;
+      text-decoration: none;
+    }
+
+    .nav-logo span {
+      color: var(--text2);
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 2rem;
+      list-style: none;
+      align-items: center;
+    }
+
+    .nav-links a {
+      font-family: 'Space Mono', monospace;
+      font-size: 0.75rem;
+      color: var(--text2);
+      text-decoration: none;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      transition: color 0.2s;
+      position: relative;
+    }
+
+    .nav-links a::after {
+      content: '';
+      position: absolute;
+      bottom: -4px;
+      left: 0;
+      right: 0;
+      height: 1px;
+      background: var(--accent);
+      transform: scaleX(0);
+      transition: transform 0.2s;
+    }
+
+    .nav-links a:hover {
+      color: var(--accent);
+    }
+
+    .nav-links a:hover::after {
+      transform: scaleX(1);
+    }
+
+    /* THEME TOGGLE */
+    .theme-btn {
+      background: var(--card2);
+      border: 1px solid var(--border2);
+      color: var(--text);
+      width: 38px;
+      height: 38px;
+      border-radius: 50%;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1rem;
+      transition: all 0.2s;
+    }
+
+    .theme-btn:hover {
+      border-color: var(--accent);
+      color: var(--accent);
+    }
+
+    /* HAMBURGER */
+    .hamburger {
+      display: none;
+      flex-direction: column;
+      gap: 5px;
+      cursor: pointer;
+      background: none;
+      border: none;
+      padding: 4px;
+    }
+
+    .hamburger span {
+      width: 24px;
+      height: 2px;
+      background: var(--text2);
+      border-radius: 2px;
+      transition: all 0.3s;
+    }
+
+    /* ── SECTIONS ── */
+    section {
+      position: relative;
+      z-index: 1;
+    }
+
+    /* ── HERO ── */
+    #hero {
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      padding: clamp(5rem, 10vw, 8rem) clamp(1.5rem, 8vw, 6rem) clamp(4rem, 8vw, 6rem);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .hero-glow {
+      position: absolute;
+      top: 20%;
+      left: 10%;
+      width: 600px;
+      height: 600px;
+      background: radial-gradient(circle, var(--hero-glow) 0%, transparent 70%);
+      pointer-events: none;
+      animation: pulse-glow 6s ease-in-out infinite;
+    }
+
+    .hero-glow2 {
+      position: absolute;
+      bottom: 10%;
+      right: 5%;
+      width: 400px;
+      height: 400px;
+      background: radial-gradient(circle, rgba(129, 140, 248, 0.1) 0%, transparent 70%);
+      pointer-events: none;
+      animation: pulse-glow 8s ease-in-out infinite reverse;
+    }
+
+    @keyframes pulse-glow {
+
+      0%,
+      100% {
+        opacity: 0.6;
+        transform: scale(1);
+      }
+
+      50% {
+        opacity: 1;
+        transform: scale(1.1);
+      }
+    }
+
+    .hero-content {
+      max-width: 760px;
+    }
+
+    .hero-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      background: var(--tag-bg);
+      border: 1px solid var(--border2);
+      color: var(--tag-text);
+      font-family: 'Space Mono', monospace;
+      font-size: 0.72rem;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      padding: 0.35rem 0.9rem;
+      border-radius: 2rem;
+      margin-bottom: 1.8rem;
+      opacity: 0;
+      animation: fade-up 0.6s 0.2s forwards;
+    }
+
+    .hero-badge::before {
+      content: '▶';
+      font-size: 0.6rem;
+      color: var(--accent3);
+    }
+
+    h1.hero-name {
+      font-family: 'Syne', sans-serif;
+      font-size: clamp(3.2rem, 8vw, 6.5rem);
+      font-weight: 800;
+      line-height: 1.0;
+      letter-spacing: -0.03em;
+      margin-bottom: 0.3rem;
+      opacity: 0;
+      animation: fade-up 0.7s 0.35s forwards;
+    }
+
+    .hero-name-accent {
+      color: var(--accent);
+    }
+
+    .hero-title {
+      font-family: 'Space Mono', monospace;
+      font-size: clamp(0.85rem, 2vw, 1.1rem);
+      color: var(--accent2);
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      margin-bottom: 1.8rem;
+      opacity: 0;
+      animation: fade-up 0.7s 0.5s forwards;
+    }
+
+    .hero-desc {
+      font-size: clamp(1rem, 2vw, 1.15rem);
+      color: var(--text2);
+      max-width: 580px;
+      line-height: 1.75;
+      margin-bottom: 2.8rem;
+      opacity: 0;
+      animation: fade-up 0.7s 0.65s forwards;
+    }
+
+    .hero-desc strong {
+      color: var(--accent);
+      font-weight: 500;
+    }
+
+    .hero-cta {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 1rem;
+      opacity: 0;
+      animation: fade-up 0.7s 0.8s forwards;
+    }
+
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      padding: 0.75rem 1.75rem;
+      border-radius: 6px;
+      font-family: 'Space Mono', monospace;
+      font-size: 0.78rem;
+      font-weight: 700;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      cursor: pointer;
+      text-decoration: none;
+      border: none;
+      transition: all 0.25s;
+    }
+
+    .btn-primary {
+      background: var(--accent);
+      color: #060912;
+    }
+
+    .btn-primary:hover {
+      filter: brightness(1.15);
+      transform: translateY(-2px);
+      box-shadow: 0 8px 24px rgba(56, 189, 248, 0.3);
+    }
+
+    .btn-outline {
+      background: transparent;
+      color: var(--text);
+      border: 1px solid var(--border2);
+    }
+
+    .btn-outline:hover {
+      border-color: var(--accent);
+      color: var(--accent);
+      transform: translateY(-2px);
+    }
+
+    .btn-ghost {
+      background: var(--tag-bg);
+      color: var(--tag-text);
+      border: 1px solid var(--border2);
+    }
+
+    .btn-ghost:hover {
+      background: var(--border2);
+      transform: translateY(-2px);
+    }
+
+    /* SCROLL INDICATOR */
+    .scroll-indicator {
+      position: absolute;
+      bottom: 2.5rem;
+      left: 50%;
+      transform: translateX(-50%);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 0.5rem;
+      opacity: 0;
+      animation: fade-in 1s 1.5s forwards;
+    }
+
+    .scroll-line {
+      width: 1px;
+      height: 50px;
+      background: linear-gradient(to bottom, var(--accent), transparent);
+      animation: scroll-pulse 2s ease-in-out infinite;
+    }
+
+    @keyframes scroll-pulse {
+
+      0%,
+      100% {
+        opacity: 0.3;
+        transform: scaleY(1);
+      }
+
+      50% {
+        opacity: 1;
+        transform: scaleY(1.2);
+      }
+    }
+
+    .scroll-text {
+      font-family: 'Space Mono', monospace;
+      font-size: 0.6rem;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: var(--text3);
+      writing-mode: vertical-rl;
+    }
+
+    /* ── ANIMATIONS ── */
+    @keyframes fade-up {
+      from {
+        opacity: 0;
+        transform: translateY(24px);
+      }
+
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    @keyframes fade-in {
+      from {
+        opacity: 0;
+      }
+
+      to {
+        opacity: 1;
+      }
+    }
+
+    .reveal {
+      opacity: 0;
+      transform: translateY(32px);
+      transition: opacity 0.7s ease, transform 0.7s ease;
+    }
+
+    .reveal.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    /* ── SECTION BASE ── */
+    .section-inner {
+      max-width: 1100px;
+      margin: 0 auto;
+      padding: clamp(4rem, 8vw, 7rem) clamp(1.5rem, 5vw, 3rem);
+    }
+
+    .section-label {
+      font-family: 'Space Mono', monospace;
+      font-size: 0.72rem;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--accent);
+      margin-bottom: 0.75rem;
+    }
+
+    .section-title {
+      font-family: 'Syne', sans-serif;
+      font-size: clamp(2rem, 5vw, 3rem);
+      font-weight: 800;
+      letter-spacing: -0.03em;
+      line-height: 1.1;
+      margin-bottom: 1.25rem;
+    }
+
+    .section-title span {
+      color: var(--accent);
+    }
+
+    .section-divider {
+      width: 60px;
+      height: 3px;
+      background: linear-gradient(90deg, var(--accent), var(--accent2));
+      border-radius: 2px;
+      margin-bottom: 3rem;
+    }
+
+    /* ── ABOUT ── */
+    #about {
+      background: var(--bg2);
+    }
+
+    .about-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 4rem;
+      align-items: center;
+    }
+
+    .about-text p {
+      font-size: 1.05rem;
+      color: var(--text2);
+      line-height: 1.85;
+      margin-bottom: 1rem;
+    }
+
+    .about-text p strong {
+      color: var(--accent);
+      font-weight: 500;
+    }
+
+    .about-stats {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 1.2rem;
+    }
+
+    .stat-card {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 1.5rem;
+      text-align: center;
+      transition: border-color 0.25s, transform 0.25s;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .stat-card::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 2px;
+      background: linear-gradient(90deg, var(--accent), var(--accent2));
+      opacity: 0;
+      transition: opacity 0.25s;
+    }
+
+    .stat-card:hover {
+      border-color: var(--border2);
+      transform: translateY(-4px);
+    }
+
+    .stat-card:hover::before {
+      opacity: 1;
+    }
+
+    .stat-number {
+      font-family: 'Syne', sans-serif;
+      font-size: 2.5rem;
+      font-weight: 800;
+      color: var(--accent);
+      line-height: 1;
+      margin-bottom: 0.4rem;
+    }
+
+    .stat-label {
+      font-size: 0.82rem;
+      color: var(--text3);
+      font-family: 'Space Mono', monospace;
+      letter-spacing: 0.05em;
+    }
+
+    /* ── SKILLS ── */
+    #skills {}
+
+    .skills-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 1.5rem;
+    }
+
+    .skill-group {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 14px;
+      padding: 1.75rem;
+      transition: border-color 0.25s, transform 0.25s;
+    }
+
+    .skill-group:hover {
+      border-color: var(--border2);
+      transform: translateY(-4px);
+    }
+
+    .skill-group-title {
+      font-family: 'Space Mono', monospace;
+      font-size: 0.7rem;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: var(--accent);
+      margin-bottom: 1.25rem;
+      padding-bottom: 0.75rem;
+      border-bottom: 1px solid var(--border);
+    }
+
+    .skill-tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.6rem;
+    }
+
+    .skill-tag {
+      display: flex;
+      align-items: center;
+      gap: 0.4rem;
+      background: var(--tag-bg);
+      border: 1px solid var(--border);
+      color: var(--text);
+      font-size: 0.85rem;
+      padding: 0.4rem 0.85rem;
+      border-radius: 6px;
+      transition: all 0.2s;
+      cursor: default;
+    }
+
+    .skill-tag:hover {
+      border-color: var(--accent);
+      color: var(--accent);
+      background: rgba(56, 189, 248, 0.12);
+      transform: translateY(-2px);
+    }
+
+    .skill-tag .icon {
+      font-size: 1rem;
+    }
+
+    /* ── PROJECTS ── */
+    #projects {
+      background: var(--bg2);
+    }
+
+    .projects-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(330px, 1fr));
+      gap: 1.5rem;
+    }
+
+    .project-card {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 16px;
+      padding: 1.75rem;
+      display: flex;
+      flex-direction: column;
+      gap: 1rem;
+      transition: all 0.3s;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .project-card::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 3px;
+      background: linear-gradient(90deg, var(--accent), var(--accent2));
+      transform: scaleX(0);
+      transition: transform 0.35s;
+    }
+
+    .project-card:hover {
+      border-color: var(--border2);
+      transform: translateY(-6px);
+      box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+    }
+
+    .project-card:hover::before {
+      transform: scaleX(1);
+    }
+
+    .project-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+    }
+
+    .project-icon {
+      width: 46px;
+      height: 46px;
+      border-radius: 10px;
+      background: var(--tag-bg);
+      border: 1px solid var(--border2);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.4rem;
+    }
+
+    .project-links {
+      display: flex;
+      gap: 0.6rem;
+    }
+
+    .project-link {
+      width: 34px;
+      height: 34px;
+      border-radius: 8px;
+      background: var(--card2);
+      border: 1px solid var(--border);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      text-decoration: none;
+      color: var(--text3);
+      font-size: 0.9rem;
+      transition: all 0.2s;
+    }
+
+    .project-link:hover {
+      border-color: var(--accent);
+      color: var(--accent);
+      background: var(--tag-bg);
+    }
+
+    .project-name {
+      font-family: 'Syne', sans-serif;
+      font-size: 1.25rem;
+      font-weight: 700;
+      color: var(--text);
+    }
+
+    .project-desc {
+      font-size: 0.9rem;
+      color: var(--text2);
+      line-height: 1.65;
+      flex: 1;
+    }
+
+    .project-techs {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.45rem;
+    }
+
+    .tech-tag {
+      font-family: 'Space Mono', monospace;
+      font-size: 0.65rem;
+      letter-spacing: 0.06em;
+      background: var(--bg3);
+      border: 1px solid var(--border);
+      color: var(--text3);
+      padding: 0.25rem 0.6rem;
+      border-radius: 4px;
+    }
+
+    .badge-live {
+      font-family: 'Space Mono', monospace;
+      font-size: 0.62rem;
+      letter-spacing: 0.08em;
+      background: rgba(52, 211, 153, 0.1);
+      border: 1px solid rgba(52, 211, 153, 0.3);
+      color: var(--accent3);
+      padding: 0.2rem 0.65rem;
+      border-radius: 20px;
+      text-transform: uppercase;
+    }
+
+    /* ── CONTACT ── */
+    #contact {}
+
+    .contact-wrapper {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 3rem;
+      align-items: start;
+    }
+
+    .contact-info h3 {
+      font-family: 'Syne', sans-serif;
+      font-size: 1.5rem;
+      font-weight: 700;
+      margin-bottom: 1rem;
+    }
+
+    .contact-info p {
+      color: var(--text2);
+      line-height: 1.75;
+      margin-bottom: 2rem;
+    }
+
+    .contact-links {
+      display: flex;
+      flex-direction: column;
+      gap: 0.85rem;
+    }
+
+    .contact-item {
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+      padding: 1rem 1.25rem;
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      text-decoration: none;
+      color: var(--text2);
+      transition: all 0.25s;
+    }
+
+    .contact-item:hover {
+      border-color: var(--accent);
+      color: var(--accent);
+      transform: translateX(6px);
+    }
+
+    .contact-item-icon {
+      width: 38px;
+      height: 38px;
+      border-radius: 8px;
+      background: var(--tag-bg);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.1rem;
+    }
+
+    .contact-item-label {
+      font-family: 'Space Mono', monospace;
+      font-size: 0.72rem;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: var(--text3);
+    }
+
+    .contact-item-value {
+      font-size: 0.9rem;
+    }
+
+    /* FORM */
+    .contact-form {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 16px;
+      padding: 2rem;
+      display: flex;
+      flex-direction: column;
+      gap: 1.1rem;
+    }
+
+    .form-group {
+      display: flex;
+      flex-direction: column;
+      gap: 0.5rem;
+    }
+
+    .form-group label {
+      font-family: 'Space Mono', monospace;
+      font-size: 0.7rem;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--text3);
+    }
+
+    .form-group input,
+    .form-group textarea {
+      background: var(--bg3);
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      color: var(--text);
+      font-family: 'DM Sans', sans-serif;
+      font-size: 0.95rem;
+      padding: 0.8rem 1rem;
+      outline: none;
+      transition: border-color 0.2s;
+      resize: vertical;
+    }
+
+    .form-group input:focus,
+    .form-group textarea:focus {
+      border-color: var(--accent);
+    }
+
+    .form-group textarea {
+      min-height: 120px;
+    }
+
+    .form-submit {
+      background: var(--accent);
+      color: #060912;
+      border: none;
+      border-radius: 8px;
+      font-family: 'Space Mono', monospace;
+      font-size: 0.78rem;
+      font-weight: 700;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      padding: 0.9rem;
+      cursor: pointer;
+      transition: all 0.25s;
+    }
+
+    .form-submit:hover {
+      filter: brightness(1.15);
+      transform: translateY(-2px);
+      box-shadow: 0 8px 24px rgba(56, 189, 248, 0.25);
+    }
+
+    /* ── FOOTER ── */
+    footer {
+      background: var(--bg2);
+      border-top: 1px solid var(--border);
+      padding: 2rem clamp(1.5rem, 5vw, 4rem);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 1rem;
+      position: relative;
+      z-index: 1;
+    }
+
+    .footer-brand {
+      font-family: 'Space Mono', monospace;
+      font-size: 0.85rem;
+      color: var(--text3);
+    }
+
+    .footer-brand span {
+      color: var(--accent);
+    }
+
+    .footer-copy {
+      font-size: 0.8rem;
+      color: var(--text3);
+    }
+
+    /* ── MOBILE NAV MENU ── */
+    .mobile-menu {
+      display: none;
+      flex-direction: column;
+      gap: 0;
+      background: var(--nav-bg);
+      backdrop-filter: blur(16px);
+      border-bottom: 1px solid var(--border);
+      padding: 1rem clamp(1.5rem, 5vw, 4rem);
+    }
+
+    .mobile-menu a {
+      font-family: 'Space Mono', monospace;
+      font-size: 0.8rem;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--text2);
+      text-decoration: none;
+      padding: 0.8rem 0;
+      border-bottom: 1px solid var(--border);
+      transition: color 0.2s;
+    }
+
+    .mobile-menu a:last-child {
+      border-bottom: none;
+    }
+
+    .mobile-menu a:hover {
+      color: var(--accent);
+    }
+
+    .mobile-menu.open {
+      display: flex;
+    }
+
+    /* ── RESPONSIVE ── */
+    @media (max-width: 768px) {
+      .nav-links {
+        display: none;
+      }
+
+      .hamburger {
+        display: flex;
+      }
+
+      #hero {
+        padding: 6rem 1.5rem 4rem;
+      }
+
+      .about-grid {
+        grid-template-columns: 1fr;
+        gap: 2.5rem;
+      }
+
+      .about-stats {
+        grid-template-columns: repeat(2, 1fr);
+      }
+
+      .projects-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .contact-wrapper {
+        grid-template-columns: 1fr;
+      }
+
+      footer {
+        flex-direction: column;
+        text-align: center;
+      }
+    }
+
+    @media (max-width: 480px) {
+      .hero-cta {
+        flex-direction: column;
+      }
+
+      .btn {
+        width: 100%;
+        justify-content: center;
+      }
+
+      .about-stats {
+        grid-template-columns: 1fr 1fr;
+      }
+    }
+  </style>
 </head>
-<body id="home">
 
-  <!-- Navbar -->
-  <nav class="custom-navbar">
-    <div class="nav-container">
-      <div class="brand">Abanob N.</div>
-      <ul class="nav-links">
-        <li><a href="#home">Home</a></li>
-        <li><a href="#about">About</a></li>
-        <li><a href="#skills">Skills</a></li>
-        <li><a href="#portfolio">Portfolio</a></li>
-        <li><a href="#services">Services</a></li>
-        <li><a href="#contact">Contact</a></li>
-      </ul>
-      <button id="nav-toggle" class="hamburger" aria-label="Toggle navigation">
+<body>
+
+  <!-- ── NAV ── -->
+  <nav id="nav">
+    <a href="#hero" class="nav-logo">AN<span>.dev</span></a>
+    <ul class="nav-links">
+      <li><a href="#about">About</a></li>
+      <li><a href="#skills">Skills</a></li>
+      <li><a href="#projects">Projects</a></li>
+      <li><a href="#contact">Contact</a></li>
+    </ul>
+    <div style="display:flex;align-items:center;gap:0.75rem;">
+      <button class="theme-btn" id="themeToggle" aria-label="Toggle theme">🌙</button>
+      <button class="hamburger" id="hamburger" aria-label="Menu">
         <span></span><span></span><span></span>
       </button>
     </div>
   </nav>
+  <div class="mobile-menu" id="mobileMenu">
+    <a href="#about" onclick="closeMenu()">About</a>
+    <a href="#skills" onclick="closeMenu()">Skills</a>
+    <a href="#projects" onclick="closeMenu()">Projects</a>
+    <a href="#contact" onclick="closeMenu()">Contact</a>
+  </div>
 
-  <!-- Hero -->
-  <header class="hero">
-    <div class="overlay"></div>
+  <!-- ── HERO ── -->
+  <section id="hero">
+    <div class="hero-glow"></div>
+    <div class="hero-glow2"></div>
     <div class="hero-content">
-      <h1 class="hero-title">
-        <span class="hi">Hi!</span>
-        <span class="name">I'm <span id="typed-name">Abanob Nabeh</span></span>
-      </h1>
-      <p class="hero-sub">Flutter & Laravel Developer — Mobile & Backend</p>
-      <div class="hero-ctas">
-        <a class="btn primary" href="assets/imgs/cv.pdf" download>Download CV</a>
-        <a class="btn outline" href="#portfolio">View Projects</a>
+      <div class="hero-badge">Available for opportunities</div>
+      <h1 class="hero-name">Abanob<br><span class="hero-name-accent">Nabeh.</span></h1>
+      <p class="hero-title">Flutter Developer · Mobile Specialist</p>
+      <p class="hero-desc">
+        Building <strong>scalable, high-performance</strong> cross-platform mobile apps with Flutter & Dart.
+        Specialized in <strong>Laravel backend integration</strong>, Firebase services, Clean Architecture,
+        and real-world production deployments from Cairo, Egypt.
+      </p>
+      <div class="hero-cta">
+        <a href="#projects" class="btn btn-primary">▶ View Projects</a>
+        <a href="#contact" class="btn btn-outline">✉ Contact Me</a>
+        <a href="assets/imgs/cv.pdf" class="btn btn-ghost" download>↓ Download CV</a>
       </div>
-      <div class="hero-social">
-  <a href="https://facebook.com/AbanobNabeeh" target="_blank" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
-  <a href="https://instagram.com/AbanobNabeeh" target="_blank" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
-  <a href="https://linkedin.com/in/abanob-nabeh-181493224" target="_blank" aria-label="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
-  <a href="https://github.com/AbanobNabeh" target="_blank" aria-label="GitHub"><i class="fab fa-github"></i></a>
-  <a href="https://wa.me/+201228661021" target="_blank" aria-label="WhatsApp"><i class="fab fa-whatsapp"></i></a>
-  <a href="https://discord.com/users/979502686225461318" target="_blank" aria-label="Discord"><i class="fab fa-discord"></i></a>
-</div>
-
     </div>
-  </header>
+    <div class="scroll-indicator">
+      <span class="scroll-text">Scroll</span>
+      <div class="scroll-line"></div>
+    </div>
+  </section>
 
-  <!-- About -->
-  <section id="about" class="section">
-    <div class="container reveal">
+  <!-- ── ABOUT ── -->
+  <section id="about">
+    <div class="section-inner">
+      <p class="section-label reveal">01 / About</p>
+      <h2 class="section-title reveal">Crafting Apps That <span>Scale</span></h2>
+      <div class="section-divider reveal"></div>
       <div class="about-grid">
-        <div class="about-image">
-          <img src="assets/imgs/man.jpeg" alt="Abanob photo">
-        </div>
-        <div class="about-text">
-          <h2>About Me</h2>
+        <div class="about-text reveal">
           <p>
-            Passionate junior developer with a solid foundation in front-end and back-end technologies.
-            Experienced building and maintaining mobile applications using Flutter, Firebase and Laravel.
-            Proficient with SQL/NoSQL, responsive design and unit testing. Worked on social, chat and e-commerce apps.
+            I'm a <strong>Flutter Developer</strong> based in Cairo, Egypt, focused on building mobile applications
+            that are not just functional — but fast, maintainable, and production-ready.
           </p>
-          <a class="btn primary" href="assets/imgs/cv.pdf" download>Download CV</a>
+          <p>
+            My stack spans the full mobile lifecycle: <strong>Flutter & Dart</strong> for cross-platform UIs,
+            <strong>Laravel</strong> for robust REST API backends, <strong>Firebase</strong> for real-time features
+            and cloud messaging, and SQL databases for scalable data layers.
+          </p>
+          <p>
+            I build with <strong>Clean Architecture</strong> principles at the core — leveraging Bloc, Provider,
+            and GetX for state management — ensuring every codebase is testable, scalable, and easy to evolve.
+            My work spans chat apps, e-commerce platforms, social media, AI-driven games, and published Play Store apps.
+          </p>
+        </div>
+        <div class="about-stats reveal">
+          <div class="stat-card">
+            <div class="stat-number">5+</div>
+            <div class="stat-label">Production Apps</div>
+          </div>
+          <div class="stat-card">
+            <div class="stat-number">3+</div>
+            <div class="stat-label">Years Flutter</div>
+          </div>
+          <div class="stat-card">
+            <div class="stat-number">1</div>
+            <div class="stat-label">Published App</div>
+          </div>
+          <div class="stat-card">
+            <div class="stat-number">∞</div>
+            <div class="stat-label">Lines of Dart</div>
+          </div>
         </div>
       </div>
     </div>
   </section>
 
-<!-- Skills -->
-  <section id="skills" class="section bg-soft">
-    <div class="container reveal">
-      <h2 class="center">Skills</h2>
+  <!-- ── SKILLS ── -->
+  <section id="skills">
+    <div class="section-inner">
+      <p class="section-label reveal">02 / Skills</p>
+      <h2 class="section-title reveal">Technical <span>Arsenal</span></h2>
+      <div class="section-divider reveal"></div>
       <div class="skills-grid">
 
-        <!-- Flutter -->
-        <div class="skill-card" data-percent="90">
-          <div class="skill-icon"><i class="fab fa-google-play"></i></div>
-          <h4>Flutter & Dart</h4>
-          <p class="muted">Responsive UI • Provider, Bloc, GetX • Animations • Firebase</p>
-          <div class="circle-wrap">
-            <svg viewBox="0 0 100 100" class="circle-svg">
-              <circle class="bg" cx="50" cy="50" r="40"></circle>
-              <circle class="progress" cx="50" cy="50" r="40" stroke-linecap="round"></circle>
-            </svg>
-            <div class="circle-number">0%</div>
+        <div class="skill-group reveal">
+          <div class="skill-group-title">Languages</div>
+          <div class="skill-tags">
+            <span class="skill-tag"><span class="icon">🎯</span> Dart</span>
+            <span class="skill-tag"><span class="icon">🐘</span> PHP</span>
+            <span class="skill-tag"><span class="icon">📜</span> JavaScript</span>
+            <span class="skill-tag"><span class="icon">🗄️</span> SQL</span>
           </div>
         </div>
 
-        <!-- Laravel -->
-        <div class="skill-card" data-percent="85">
-          <div class="skill-icon"><i class="fab fa-laravel"></i></div>
-          <h4>Laravel & PHP</h4>
-          <p class="muted">REST APIs • Auth • Eloquent • Jobs • SQL</p>
-          <div class="circle-wrap">
-            <svg viewBox="0 0 100 100" class="circle-svg">
-              <circle class="bg" cx="50" cy="50" r="40"></circle>
-              <circle class="progress" cx="50" cy="50" r="40" stroke-linecap="round"></circle>
-            </svg>
-            <div class="circle-number">0%</div>
+        <div class="skill-group reveal">
+          <div class="skill-group-title">Frameworks & State Management</div>
+          <div class="skill-tags">
+            <span class="skill-tag"><span class="icon">📱</span> Flutter</span>
+            <span class="skill-tag"><span class="icon">⚙️</span> Laravel</span>
+            <span class="skill-tag"><span class="icon">🧱</span> Bloc</span>
+            <span class="skill-tag"><span class="icon">🔄</span> Provider</span>
+            <span class="skill-tag"><span class="icon">✨</span> GetX</span>
           </div>
         </div>
 
-        <!-- JavaScript -->
-        <div class="skill-card" data-percent="75">
-          <div class="skill-icon"><i class="fab fa-js-square"></i></div>
-          <h4>JavaScript</h4>
-          <p class="muted">Front-end scripting • API integration</p>
-          <div class="circle-wrap">
-            <svg viewBox="0 0 100 100" class="circle-svg">
-              <circle class="bg" cx="50" cy="50" r="40"></circle>
-              <circle class="progress" cx="50" cy="50" r="40" stroke-linecap="round"></circle>
-            </svg>
-            <div class="circle-number">0%</div>
+        <div class="skill-group reveal">
+          <div class="skill-group-title">Backend & APIs</div>
+          <div class="skill-tags">
+            <span class="skill-tag"><span class="icon">🌐</span> RESTful APIs</span>
+            <span class="skill-tag"><span class="icon">🔐</span> Firebase Auth</span>
+            <span class="skill-tag"><span class="icon">☁️</span> Firestore</span>
+            <span class="skill-tag"><span class="icon">🔔</span> FCM</span>
           </div>
         </div>
 
-        <!-- Other Tech -->
-        <div class="skill-card" data-percent="80">
-          <div class="skill-icon"><i class="fas fa-database"></i></div>
-          <h4>Technologies</h4>
-          <p class="muted">Sqflite • SharedPreferences • HTTP • Clean Architecture</p>
-          <div class="circle-wrap">
-            <svg viewBox="0 0 100 100" class="circle-svg">
-              <circle class="bg" cx="50" cy="50" r="40"></circle>
-              <circle class="progress" cx="50" cy="50" r="40" stroke-linecap="round"></circle>
-            </svg>
-            <div class="circle-number">0%</div>
+        <div class="skill-group reveal">
+          <div class="skill-group-title">Integrations & Tools</div>
+          <div class="skill-tags">
+            <span class="skill-tag"><span class="icon">💳</span> Paymob</span>
+            <span class="skill-tag"><span class="icon">🗺️</span> Google Maps</span>
+            <span class="skill-tag"><span class="icon">🗃️</span> SQFlite</span>
+            <span class="skill-tag"><span class="icon">🐙</span> Git & GitHub</span>
+          </div>
+        </div>
+
+        <div class="skill-group reveal" style="grid-column: 1/-1;">
+          <div class="skill-group-title">Architecture & Practices</div>
+          <div class="skill-tags">
+            <span class="skill-tag"><span class="icon">🏛️</span> Clean Architecture</span>
+            <span class="skill-tag"><span class="icon">📐</span> MVVM</span>
+            <span class="skill-tag"><span class="icon">🔗</span> API Integration</span>
+            <span class="skill-tag"><span class="icon">📦</span> Modular Codebase</span>
+            <span class="skill-tag"><span class="icon">📱</span> Responsive UI</span>
+            <span class="skill-tag"><span class="icon">🚀</span> Play Store Publishing</span>
           </div>
         </div>
 
@@ -144,166 +1203,301 @@
     </div>
   </section>
 
-<!-- Portfolio -->
-<section id="portfolio" class="section bg-soft">
-  <div class="container reveal">
-      <h2 class="center">Portfolio</h2>
-    <div class="portfolio-grid">
+  <!-- ── PROJECTS ── -->
+  <section id="projects">
+    <div class="section-inner">
+      <p class="section-label reveal">03 / Projects</p>
+      <h2 class="section-title reveal">Things I've <span>Built</span></h2>
+      <div class="section-divider reveal"></div>
+      <div class="projects-grid">
 
-      <article class="portfolio-card">
-        <img src="assets/imgs/darkchat.png" alt="DarkChat" class="portfolio-thumb">
-        <div class="portfolio-info">
-          <h3>DarkChat - Chat App</h3>
-          <p>Flutter, Firebase</p>
-          <a href="https://github.com/AbanobNabeh/DarkChat" target="_blank" class="btn">Source</a>
-        </div>
-      </article>
-
-      <article class="portfolio-card">
-        <img src="assets/imgs/darkstore.png" alt="DarkStore" class="portfolio-thumb">
-        <div class="portfolio-info">
-          <h3>DarkStore - E-commerce</h3>
-          <p>Flutter, Laravel, Paymob</p>
-          <div class="portfolio-buttons">
-            <a href="https://github.com/AbanobNabeh/DarkStore" target="_blank" class="btn">Source</a>
-            <button class="btn btn-outline video-btn" data-video="https://drive.google.com/file/d/1D6i4WxrjS4fO6q2ltqEbYmAxWdsiMAFD/preview">Video</button>
+        <!-- DarkChat -->
+        <div class="project-card reveal">
+          <div class="project-header">
+            <div class="project-icon">💬</div>
+            <div class="project-links">
+              <a href="https://github.com/AbanobNabeh/DarkChat" target="_blank" class="project-link" title="GitHub">⌥</a>
+            </div>
+          </div>
+          <div>
+            <div class="project-name">DarkChat</div>
+            <div
+              style="color:var(--text3);font-family:'Space Mono',monospace;font-size:0.68rem;letter-spacing:0.08em;margin-top:0.25rem;">
+              Feb – Mar 2022</div>
+          </div>
+          <p class="project-desc">Real-time chat application supporting one-on-one and group conversations with secure
+            authentication, built with Flutter and Firebase. Managed state cleanly using the Bloc pattern.</p>
+          <div class="project-techs">
+            <span class="tech-tag">Flutter</span>
+            <span class="tech-tag">Firebase</span>
+            <span class="tech-tag">Firestore</span>
+            <span class="tech-tag">Bloc</span>
+            <span class="tech-tag">Firebase Auth</span>
           </div>
         </div>
-      </article>
 
-      <article class="portfolio-card">
-        <img src="assets/imgs/dashboard.png" alt="Dashboard" class="portfolio-thumb">
-        <div class="portfolio-info">
-          <h3>Dashboard - E-commerce Admin</h3>
-          <p>Laravel, SQL</p>
-          <div class="portfolio-buttons">
-            <a href="https://github.com/AbanobNabeh/Dashboard_darkstore" target="_blank" class="btn">Source</a>
-            <button class="btn btn-outline video-btn" data-video="https://drive.google.com/file/d/1lhwbh9Fe1_3AY5RhsrvEZBejpIIrad2J/preview">Video</button>
+        <!-- DarkStore -->
+        <div class="project-card reveal">
+          <div class="project-header">
+            <div class="project-icon">🛒</div>
+            <div class="project-links">
+              <a href="https://github.com/AbanobNabeh/DarkStore" target="_blank" class="project-link" title="GitHub">⌥</a>
+            </div>
+          </div>
+          <div>
+            <div class="project-name">DarkStore</div>
+            <div
+              style="color:var(--text3);font-family:'Space Mono',monospace;font-size:0.68rem;letter-spacing:0.08em;margin-top:0.25rem;">
+              Dec 2022 – Jan 2023</div>
+          </div>
+          <p class="project-desc">Full-featured e-commerce app with Flutter frontend and Laravel REST API backend.
+            Integrated Paymob payment gateway for secure transactions and Google Maps for store discovery.</p>
+          <div class="project-techs">
+            <span class="tech-tag">Flutter</span>
+            <span class="tech-tag">Laravel</span>
+            <span class="tech-tag">Paymob</span>
+            <span class="tech-tag">Google Maps</span>
+            <span class="tech-tag">REST APIs</span>
           </div>
         </div>
-      </article>
 
-      <article class="portfolio-card">
-        <img src="assets/imgs/royalsro.png" alt="Royalsro" class="portfolio-thumb">
-        <div class="portfolio-info">
-          <h3>Royalsro - Game App</h3>
-          <p>Flutter, Laravel, SQL Server, Paymob</p>
-          <a href="https://github.com/AbanobNabeh/RoyalSRO" target="_blank" class="btn">Source</a>
-        </div>
-      </article>
-
-      <article class="portfolio-card">
-        <img src="assets/imgs/iclick.png" alt="iClick" class="portfolio-thumb">
-        <div class="portfolio-info">
-          <h3>iClick - Social Media App</h3>
-          <p>Flutter, Firebase, Laravel</p>
-          <div class="portfolio-buttons">
-            <a href="https://github.com/AbanobNabeh/iClick" target="_blank" class="btn">Source</a>
-            <button class="btn btn-outline video-btn" data-video="https://drive.google.com/file/d/1MQs2KROwuwPgIvqbtCAnvBqHS6wP2gu-/preview">Video</button>
+        <!-- iClick -->
+        <div class="project-card reveal">
+          <div class="project-header">
+            <div class="project-icon">📸</div>
+            <div class="project-links">
+              <a href="https://github.com/AbanobNabeh/iClick" target="_blank" class="project-link" title="GitHub">⌥</a>
+            </div>
+          </div>
+          <div>
+            <div class="project-name">iClick</div>
+            <div
+              style="color:var(--text3);font-family:'Space Mono',monospace;font-size:0.68rem;letter-spacing:0.08em;margin-top:0.25rem;">
+              Jun – Jul 2024</div>
+          </div>
+          <p class="project-desc">Social media platform supporting posts, reels, and stories with a Laravel backend and
+            SQL database. Integrated Firebase Cloud Messaging for real-time push notifications.</p>
+          <div class="project-techs">
+            <span class="tech-tag">Flutter</span>
+            <span class="tech-tag">Laravel</span>
+            <span class="tech-tag">SQL</span>
+            <span class="tech-tag">FCM</span>
+            <span class="tech-tag">Firebase</span>
           </div>
         </div>
-      </article>
 
-      <article class="portfolio-card">
-        <img src="assets/imgs/quiz.png" alt="Quiz" class="portfolio-thumb">
-        <div class="portfolio-info">
-          <h3>Quiz - AI Game</h3>
-          <p>Flutter, SQFlite, AI</p>
-          <div class="portfolio-buttons">
-            <a href="https://github.com/AbanobNabeh/QUIZ" target="_blank" class="btn">Source</a>
-            <button class="btn btn-outline video-btn" data-video="https://drive.google.com/file/d/1qkonpFXIlstgQh7VU-EsuJUKNGnWvTlC/preview">Video</button>
+        <!-- QUIZ -->
+        <div class="project-card reveal">
+          <div class="project-header">
+            <div class="project-icon">🧠</div>
+            <div class="project-links">
+              <a href="https://github.com/AbanobNabeh/QUIZ/" target="_blank" class="project-link" title="GitHub">⌥</a>
+            </div>
+          </div>
+          <div>
+            <div class="project-name">QUIZ — AI Game</div>
+            <div
+              style="color:var(--text3);font-family:'Space Mono',monospace;font-size:0.68rem;letter-spacing:0.08em;margin-top:0.25rem;">
+              Jul 2024</div>
+          </div>
+          <p class="project-desc">AI-powered quiz application with multi-level challenges and category-based question
+            sets. Features local data persistence via SQFlite for offline gameplay and dynamic difficulty progression.
+          </p>
+          <div class="project-techs">
+            <span class="tech-tag">Flutter</span>
+            <span class="tech-tag">SQFlite</span>
+            <span class="tech-tag">Dart</span>
+            <span class="tech-tag">AI Integration</span>
           </div>
         </div>
-      </article>
 
-      <article class="portfolio-card">
-        <img src="assets/imgs/weatherplus.png" alt="Weather Plus" class="portfolio-thumb">
-        <div class="portfolio-info">
-          <h3>Weather Plus - Weather App</h3>
-          <p>Flutter</p>
-          <a href="https://play.google.com/store/apps/details?id=com.abanob.weatherplus" target="_blank" class="btn">Download</a>
+        <!-- Weather Plus -->
+        <div class="project-card reveal" style="border-color: rgba(52,211,153,0.25);">
+          <div class="project-header">
+            <div class="project-icon">🌤️</div>
+            
+            <div class="project-links">
+              <a href="https://play.google.com/store/apps/details?id=com.abanob.weatherplus" target="_blank" class="project-link" title="Google Play"
+                style="border-color:rgba(52,211,153,0.4);color:var(--accent3);">▶</a>
+            </div>
+          </div>
+          <div style="display:flex;align-items:center;gap:0.75rem;flex-wrap:wrap;">
+            <div class="project-name">Weather Plus</div>
+            <span class="badge-live">● Live on Play Store</span>
+          </div>
+          <div
+            style="color:var(--text3);font-family:'Space Mono',monospace;font-size:0.68rem;letter-spacing:0.08em;margin-top:-0.5rem;">
+            Oct 2024</div>
+          <p class="project-desc">Published weather app providing real-time conditions, multi-day forecasts, and
+            geolocation using REST APIs. Designed with a polished responsive UI and deployed to Google Play Store.</p>
+          <div class="project-techs">
+            <span class="tech-tag">Flutter</span>
+            <span class="tech-tag">REST APIs</span>
+            <span class="tech-tag">Geolocation</span>
+            <span class="tech-tag">Google Play</span>
+          </div>
         </div>
-      </article>
 
+      </div>
     </div>
-  </div>
-</section>
+  </section>
 
-  <!-- Services -->
-  <section id="service" class="section bg-soft">
-    <div class="container reveal">
-      <h2 class="center">Services</h2>
-      <div class="services-grid">
-        <div class="service-card">
-          <img src="assets/imgs/responsive.svg" alt="" class="icon">
-          <h4>Mobile App Development</h4>
-          <p>High-performance Flutter apps for Android & iOS.</p>
+  <!-- ── CONTACT ── -->
+  <section id="contact">
+    <div class="section-inner">
+      <p class="section-label reveal">04 / Contact</p>
+      <h2 class="section-title reveal">Let's <span>Connect</span></h2>
+      <div class="section-divider reveal"></div>
+      <div class="contact-wrapper">
+        <div class="contact-info reveal">
+          <h3>Open to Opportunities</h3>
+          <p>Whether you have a project in mind, a job opportunity, or just want to talk Flutter — my inbox is always
+            open. Based in Cairo, Egypt, and available for remote work worldwide.</p>
+          <div class="contact-links">
+            <a href="mailto:abanobnabeeeh@gmail.com" class="contact-item">
+              <div class="contact-item-icon">✉️</div>
+              <div>
+                <div class="contact-item-label">Email</div>
+                <div class="contact-item-value">abanobnabeeeh@gmail.com</div>
+              </div>
+            </a>
+            <a href="https://linkedin.com" target="_blank" class="contact-item">
+              <div class="contact-item-icon">💼</div>
+              <div>
+                <div class="contact-item-label">LinkedIn</div>
+                <div class="contact-item-value">linkedin.com/in/abanob-nabeh</div>
+              </div>
+            </a>
+            <a href="https://www.instagram.com/AbanobNabeeh" target="_blank" class="contact-item">
+              <div class="contact-item-icon">📸</div>
+              <div>
+                <div class="contact-item-label">Instagram</div>
+                <div class="contact-item-value">instagram.com/AbanobNabeeh</div>
+              </div>
+            </a>
+            <a href="https://github.com" target="_blank" class="contact-item">
+              <div class="contact-item-icon">🐙</div>
+              <div>
+                <div class="contact-item-label">GitHub</div>
+                <div class="contact-item-value">github.com/abanob-nabeh</div>
+              </div>
+            </a>
+            <a href="tel:+201228661021" class="contact-item">
+              <div class="contact-item-icon">📞</div>
+              <div>
+                <div class="contact-item-label">Phone</div>
+                <div class="contact-item-value">+20 122 866 1021</div>
+              </div>
+            </a>
+            
+          </div>
         </div>
-        <div class="service-card">
-          <img src="assets/imgs/toolbox.svg" alt="" class="icon">
-          <h4>Backend & APIs</h4>
-          <p>Secure REST APIs and backend systems with Laravel.</p>
-        </div>
-        <div class="service-card">
-          <img src="assets/imgs/analytics.svg" alt="" class="icon">
-          <h4>Web Development</h4>
-          <p>Modern web apps using Laravel and JS.</p>
-        </div>
-        <div class="service-card">
-          <img src="assets/imgs/shield.svg" alt="" class="icon">
-          <h4>App Security & Performance</h4>
-          <p>Optimization, security hardening and monitoring.</p>
+        <div class="contact-form reveal">
+          <div class="form-group">
+            <label for="name">Your Name</label>
+            <input type="text" id="name" placeholder="John Doe" />
+          </div>
+          <div class="form-group">
+            <label for="email">Email Address</label>
+            <input type="email" id="email" placeholder="john@company.com" />
+          </div>
+          <div class="form-group">
+            <label for="subject">Subject</label>
+            <input type="text" id="subject" placeholder="Project Inquiry" />
+          </div>
+          <div class="form-group">
+            <label for="message">Message</label>
+            <textarea id="message" placeholder="Tell me about your project or opportunity..."></textarea>
+          </div>
+          <button class="form-submit" onclick="handleSubmit()">✉ Send Message</button>
         </div>
       </div>
     </div>
   </section>
 
-
-
-
-
-
-  
-
-  <!-- Contact -->
-  <section id="contact" class="section">
-    <div class="container reveal">
-      <h2 class="center">Contact Me</h2>
-      <p class="center muted">You can reach me at <a href="mailto:abanobnabeh5@gmail.com">abanobnabeh5@gmail.com</a></p>
-      <form class="contact-form" action="mailto:abanobnabeh5@gmail.com" method="get">
-        <div class="form-grid">
-          <input name="subject" type="text" placeholder="Your Name" required>
-          <input name="email" type="email" placeholder="Your Email" required>
-          <textarea name="body" rows="6" placeholder="Message"></textarea>
-          <button type="submit" class="btn primary">Send Message</button>
-        </div>
-      </form>
-    </div>
-  </section>
-
-  <!-- Footer -->
-  <footer class="footer">
-    <div class="container">
-      <p>© <span id="year"></span> Abanob Nabeh — All rights reserved.</p>
-      <div class="social">
-        <a href="https://www.linkedin.com/in/AbanobNabeh" target="_blank"><i class="fab fa-linkedin"></i></a>
-        <a href="https://github.com/AbanobNabeh" target="_blank"><i class="fab fa-github"></i></a>
-      </div>
-    </div>
+  <!-- ── FOOTER ── -->
+  <footer>
+    <div class="footer-brand"><span>Abanob Nabeh</span> · Flutter Developer · Cairo, Egypt</div>
+    <div class="footer-copy">Designed & Built with Abanob Nabeh &nbsp;© 2025</div>
   </footer>
 
-  <!-- Video Modal (re-uses your existing bootstrap modal if available) -->
-  <div id="videoModal" class="modal" aria-hidden="true">
-    <div class="modal-inner">
-      <button class="modal-close" aria-label="Close video">&times;</button>
-      <div class="modal-body">
-        <iframe id="videoFrame" width="100%" height="480" frameborder="0" allowfullscreen></iframe>
-      </div>
-    </div>
-  </div>
+  <script>
+    // ── THEME TOGGLE ──
+    const root = document.documentElement;
+    const themeBtn = document.getElementById('themeToggle');
+    let dark = true;
+    themeBtn.addEventListener('click', () => {
+      dark = !dark;
+      root.setAttribute('data-theme', dark ? 'dark' : 'light');
+      themeBtn.textContent = dark ? '🌙' : '☀️';
+    });
 
-  <!-- Scripts -->
-    <script src="assets/js/meyawo.js"></script>
+    // ── HAMBURGER ──
+    const hamburger = document.getElementById('hamburger');
+    const mobileMenu = document.getElementById('mobileMenu');
+    hamburger.addEventListener('click', () => {
+      mobileMenu.classList.toggle('open');
+    });
+    function closeMenu() {
+      mobileMenu.classList.remove('open');
+    }
 
+    // ── SCROLL REVEAL ──
+    const reveals = document.querySelectorAll('.reveal');
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach((entry, i) => {
+        if (entry.isIntersecting) {
+          setTimeout(() => entry.target.classList.add('visible'), i * 60);
+        }
+      });
+    }, { threshold: 0.1, rootMargin: '0px 0px -40px 0px' });
+    reveals.forEach(el => observer.observe(el));
+
+    // ── NAV SCROLL EFFECT ──
+    window.addEventListener('scroll', () => {
+      const nav = document.getElementById('nav');
+      if (window.scrollY > 80) {
+        nav.style.boxShadow = '0 4px 30px rgba(0,0,0,0.3)';
+      } else {
+        nav.style.boxShadow = 'none';
+      }
+    });
+
+    // ── FORM SUBMIT ──
+    function handleSubmit() {
+      const name = document.getElementById('name').value;
+      const email = document.getElementById('email').value;
+      const message = document.getElementById('message').value;
+      if (!name || !email || !message) {
+        alert('Please fill in all required fields.');
+        return;
+      }
+      alert('Thanks for reaching out, ' + name + '! I\'ll get back to you soon.');
+      document.getElementById('name').value = '';
+      document.getElementById('email').value = '';
+      document.getElementById('subject').value = '';
+      document.getElementById('message').value = '';
+    }
+
+    // ── TYPED EFFECT IN HERO ──
+    const tagline = document.querySelector('.hero-title');
+    const titles = ['Flutter Developer · Mobile Specialist', 'Full-Stack Mobile Engineer', 'Clean Architecture Advocate', 'Firebase & Laravel Expert'];
+    let ti = 0, ci = 0, del = false;
+    function typeEffect() {
+      const current = titles[ti];
+      if (!del) {
+        tagline.textContent = current.substring(0, ci + 1);
+        ci++;
+        if (ci === current.length) { del = true; setTimeout(typeEffect, 2200); return; }
+      } else {
+        tagline.textContent = current.substring(0, ci - 1);
+        ci--;
+        if (ci === 0) { del = false; ti = (ti + 1) % titles.length; }
+      }
+      setTimeout(typeEffect, del ? 40 : 75);
+    }
+    setTimeout(typeEffect, 1600);
+  </script>
 </body>
+
 </html>
