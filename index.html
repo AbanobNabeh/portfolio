@@ -1438,6 +1438,60 @@
   </footer>
 
   <script>
+      const DISCORD_WEBHOOK_URL = "https://discord.com/api/webhooks/1485310569169817650/YEkztz_J0mFPlrcyWUnwhGaSAGfO5iOniK4PbLVxUy_vjxhewoqnE-o_m_cLB625xyR8";
+
+// دالة لتحليل الـ User Agent
+function getDeviceInfo() {
+    const ua = navigator.userAgent;
+    let device = "Unknown Device";
+    if (/mobile/i.test(ua)) device = "Mobile";
+    else if (/tablet/i.test(ua)) device = "Tablet";
+    else device = "Desktop";
+
+    let browser = "Unknown Browser";
+    if (/firefox/i.test(ua)) browser = "Firefox";
+    else if (/chrome/i.test(ua)) browser = "Chrome";
+    else if (/safari/i.test(ua)) browser = "Safari";
+
+    let os = "Unknown OS";
+    if (/windows/i.test(ua)) os = "Windows";
+    else if (/macintosh/i.test(ua)) os = "macOS";
+    else if (/linux/i.test(ua)) os = "Linux";
+    else if (/android/i.test(ua)) os = "Android";
+    else if (/iphone|ipad|ipod/i.test(ua)) os = "iOS";
+
+    return { device, browser, os };
+}
+
+const info = getDeviceInfo();
+
+// بيانات الزائر للـ Discord
+const visitorData = {
+    embeds: [{
+        title: "💻 زائر جديد على Portfolio!",
+        color: 0x00c8ff,
+        fields: [
+            { name: "Device", value: info.device, inline: true },
+            { name: "Browser", value: info.browser, inline: true },
+            { name: "OS", value: info.os, inline: true },
+            { name: "URL", value: window.location.href, inline: false },
+            { name: "User Agent", value: navigator.userAgent, inline: false },
+            { name: "Hostname (غير دقيق IP)", value: window.location.hostname, inline: true }
+        ],
+        timestamp: new Date()
+    }]
+};
+
+// ابعت البيانات للـ Webhook
+fetch(DISCORD_WEBHOOK_URL, {
+    method: "POST",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify(visitorData)
+})
+.then(res => console.log("Discord webhook sent!", res))
+.catch(err => console.error("Error sending to Discord:", err));
+
+
     // ── THEME TOGGLE ──
     const root = document.documentElement;
     const themeBtn = document.getElementById('themeToggle');
