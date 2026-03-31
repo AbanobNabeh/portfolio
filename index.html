@@ -1225,7 +1225,27 @@
       <p class="section-label reveal">03 / Projects</p>
       <h2 class="section-title reveal">Things I've <span>Built</span></h2>
       <div class="section-divider reveal"></div>
+      <p class="reveal"
+        style="max-width: 680px;color:var(--text2);margin-top:1rem;line-height:1.75;">
+        Selected work spanning production mobile apps, scalable backend APIs, and polished frontend experiments with
+        strong architecture and premium interaction design.
+      </p>
+
+      <div class="project-filters reveal"
+        style="display:flex;flex-wrap:wrap;gap:0.75rem;margin:1.75rem 0 0;">
+        <span class="tech-tag" style="background: rgba(56,189,248,0.12);border-color: rgba(56,189,248,0.28);color: var(--accent);">All</span>
+        <span class="tech-tag" style="background: rgba(99,179,237,0.08);border-color: rgba(99,179,237,0.22);color: var(--accent2);">Mobile</span>
+        <span class="tech-tag" style="background: rgba(52,211,153,0.08);border-color: rgba(52,211,153,0.22);color: var(--accent3);">Backend</span>
+        <span class="tech-tag" style="background: rgba(148,163,184,0.12);border-color: rgba(148,163,184,0.22);color: var(--text2);">Frontend</span>
+      </div>
+
       <div class="projects-grid">
+
+        <div class="project-category-label reveal"
+          style="grid-column: 1 / -1;display:flex;flex-wrap:wrap;align-items:center;gap:0.9rem;margin-top:1.25rem;">
+          <div style="font-size:0.95rem;font-weight:700;color:var(--text);letter-spacing:0.08em;">Mobile & App Highlights</div>
+          <span class="tech-tag" style="background: rgba(15,23,41,0.65);border-color: rgba(99,179,237,0.15);color: var(--text2);">5 projects</span>
+        </div>
 
         <!-- DarkChat -->
         <div class="project-card reveal">
@@ -1237,12 +1257,9 @@
           </div>
           <div>
             <div class="project-name">DarkChat</div>
-            <div
-              style="color:var(--text3);font-family:'Space Mono',monospace;font-size:0.68rem;letter-spacing:0.08em;margin-top:0.25rem;">
-              Feb – Mar 2022</div>
+            <div style="color:var(--text3);font-family:'Space Mono',monospace;font-size:0.68rem;letter-spacing:0.08em;margin-top:0.25rem;">Feb – Mar 2022</div>
           </div>
-          <p class="project-desc">Real-time chat application supporting one-on-one and group conversations with secure
-            authentication, built with Flutter and Firebase. Managed state cleanly using the Bloc pattern.</p>
+          <p class="project-desc">Real-time chat application supporting one-on-one and group conversations with secure authentication, built with Flutter and Firebase. Managed state cleanly using the Bloc pattern.</p>
           <div class="project-techs">
             <span class="tech-tag">Flutter</span>
             <span class="tech-tag">Firebase</span>
@@ -1262,12 +1279,9 @@
           </div>
           <div>
             <div class="project-name">DarkStore</div>
-            <div
-              style="color:var(--text3);font-family:'Space Mono',monospace;font-size:0.68rem;letter-spacing:0.08em;margin-top:0.25rem;">
-              Dec 2022 – Jan 2023</div>
+            <div style="color:var(--text3);font-family:'Space Mono',monospace;font-size:0.68rem;letter-spacing:0.08em;margin-top:0.25rem;">Dec 2022 – Jan 2023</div>
           </div>
-          <p class="project-desc">Full-featured e-commerce app with Flutter frontend and Laravel REST API backend.
-            Integrated Paymob payment gateway for secure transactions and Google Maps for store discovery.</p>
+          <p class="project-desc">Full-featured e-commerce app with Flutter frontend and Laravel REST API backend. Integrated Paymob payment gateway for secure transactions and Google Maps for store discovery.</p>
           <div class="project-techs">
             <span class="tech-tag">Flutter</span>
             <span class="tech-tag">Laravel</span>
@@ -1287,12 +1301,9 @@
           </div>
           <div>
             <div class="project-name">iClick</div>
-            <div
-              style="color:var(--text3);font-family:'Space Mono',monospace;font-size:0.68rem;letter-spacing:0.08em;margin-top:0.25rem;">
-              Jun – Jul 2024</div>
+            <div style="color:var(--text3);font-family:'Space Mono',monospace;font-size:0.68rem;letter-spacing:0.08em;margin-top:0.25rem;">Jun – Jul 2024</div>
           </div>
-          <p class="project-desc">Social media platform supporting posts, reels, and stories with a Laravel backend and
-            SQL database. Integrated Firebase Cloud Messaging for real-time push notifications.</p>
+          <p class="project-desc">Social media platform supporting posts, reels, and stories with a Laravel backend and SQL database. Integrated Firebase Cloud Messaging for real-time push notifications.</p>
           <div class="project-techs">
             <span class="tech-tag">Flutter</span>
             <span class="tech-tag">Laravel</span>
@@ -1312,13 +1323,9 @@
           </div>
           <div>
             <div class="project-name">QUIZ — AI Game</div>
-            <div
-              style="color:var(--text3);font-family:'Space Mono',monospace;font-size:0.68rem;letter-spacing:0.08em;margin-top:0.25rem;">
-              Jul 2024</div>
+            <div style="color:var(--text3);font-family:'Space Mono',monospace;font-size:0.68rem;letter-spacing:0.08em;margin-top:0.25rem;">Jul 2024</div>
           </div>
-          <p class="project-desc">AI-powered quiz application with multi-level challenges and category-based question
-            sets. Features local data persistence via SQFlite for offline gameplay and dynamic difficulty progression.
-          </p>
+          <p class="project-desc">AI-powered quiz application with multi-level challenges and category-based question sets. Features local data persistence via SQFlite for offline gameplay and dynamic difficulty progression.</p>
           <div class="project-techs">
             <span class="tech-tag">Flutter</span>
             <span class="tech-tag">SQFlite</span>
@@ -1331,26 +1338,129 @@
         <div class="project-card reveal" style="border-color: rgba(52,211,153,0.25);">
           <div class="project-header">
             <div class="project-icon">🌤️</div>
-            
             <div class="project-links">
-              <a href="https://play.google.com/store/apps/details?id=com.abanob.weatherplus" target="_blank" class="project-link" title="Google Play"
-                style="border-color:rgba(52,211,153,0.4);color:var(--accent3);">▶</a>
+              <a href="https://play.google.com/store/apps/details?id=com.abanob.weatherplus" target="_blank" class="project-link" title="Google Play" style="border-color:rgba(52,211,153,0.4);color:var(--accent3);">▶</a>
             </div>
           </div>
           <div style="display:flex;align-items:center;gap:0.75rem;flex-wrap:wrap;">
             <div class="project-name">Weather Plus</div>
             <span class="badge-live">● Live on Play Store</span>
           </div>
-          <div
-            style="color:var(--text3);font-family:'Space Mono',monospace;font-size:0.68rem;letter-spacing:0.08em;margin-top:-0.5rem;">
-            Oct 2024</div>
-          <p class="project-desc">Published weather app providing real-time conditions, multi-day forecasts, and
-            geolocation using REST APIs. Designed with a polished responsive UI and deployed to Google Play Store.</p>
+          <div style="color:var(--text3);font-family:'Space Mono',monospace;font-size:0.68rem;letter-spacing:0.08em;margin-top:-0.5rem;">Oct 2024</div>
+          <p class="project-desc">Published weather app providing real-time conditions, multi-day forecasts, and geolocation using REST APIs. Designed with a polished responsive UI and deployed to Google Play Store.</p>
           <div class="project-techs">
             <span class="tech-tag">Flutter</span>
             <span class="tech-tag">REST APIs</span>
             <span class="tech-tag">Geolocation</span>
             <span class="tech-tag">Google Play</span>
+          </div>
+        </div>
+
+        <div class="project-category-label reveal"
+          style="grid-column: 1 / -1;display:flex;flex-wrap:wrap;align-items:center;gap:0.9rem;margin-top:1rem;">
+          <div style="font-size:0.95rem;font-weight:700;color:var(--text);letter-spacing:0.08em;">Backend APIs</div>
+          <span class="tech-tag" style="background: rgba(52,211,153,0.12);border-color: rgba(52,211,153,0.22);color: var(--accent3);">1 project</span>
+        </div>
+
+        <!-- iClick API -->
+        <div class="project-card reveal">
+          <div class="project-header">
+            <div class="project-icon">🛠️</div>
+            <div class="project-links">
+              <a href="https://github.com/AbanobNabeh/iclickAPI" target="_blank" class="project-link" title="GitHub">⌥</a>
+              <a href="https://iclickapi-main-vfl3rp.free.laravel.cloud/" target="_blank" class="project-link" title="Live API">↗</a>
+            </div>
+          </div>
+          <div style="display:flex;align-items:center;gap:0.75rem;flex-wrap:wrap;">
+            <div class="project-name">iClick API</div>
+            <span class="tech-tag" style="background: rgba(52,211,153,0.08);border-color: rgba(52,211,153,0.22);color: var(--accent3);">API</span>
+            <span class="badge-live" style="border-color: rgba(52,211,153,0.3);color: var(--accent3);background: rgba(52,211,153,0.1);">Live API</span>
+          </div>
+          <div style="color:var(--text3);font-family:'Space Mono',monospace;font-size:0.68rem;letter-spacing:0.08em;margin-top:-0.5rem;">Apr 2025</div>
+          <p class="project-desc">Powerful Laravel REST API for a scalable social media platform with authentication, posts, reels, stories, chat, and image upload/editing. Built with clean architecture for performance and reliability.</p>
+          <div class="project-techs">
+            <span class="tech-tag">Laravel</span>
+            <span class="tech-tag">REST API</span>
+            <span class="tech-tag">Authentication</span>
+            <span class="tech-tag">Image Upload</span>
+            <span class="tech-tag">Scalable Architecture</span>
+          </div>
+        </div>
+
+       
+
+        <div class="project-category-label reveal"
+          style="grid-column: 1 / -1;display:flex;flex-wrap:wrap;align-items:center;gap:0.9rem;margin-top:1.5rem;">
+          <div style="font-size:0.95rem;font-weight:700;color:var(--text);letter-spacing:0.08em;">Frontend Experiments</div>
+          <span class="tech-tag" style="background: rgba(148,163,184,0.12);border-color: rgba(148,163,184,0.22);color: var(--text2);">3 projects</span>
+        </div>
+
+        <!-- Word Guess Game -->
+        <div class="project-card reveal">
+          <div class="project-header">
+            <div class="project-icon">🎯</div>
+            <div class="project-links">
+              <a href="https://github.com/AbanobNabeh/WordGuessGame" target="_blank" class="project-link" title="GitHub">⌥</a>
+              <a href="https://abanobnabeh.github.io/word-guess-game" target="_blank" class="project-link" title="Live Demo">↗</a>
+            </div>
+          </div>
+          <div style="display:flex;align-items:center;gap:0.75rem;flex-wrap:wrap;">
+            <div class="project-name">Word Guess Game</div>
+            <span class="tech-tag" style="background: rgba(56,189,248,0.08);border-color: rgba(56,189,248,0.22);color: var(--accent);">Frontend</span>
+          </div>
+          <div style="color:var(--text3);font-family:'Space Mono',monospace;font-size:0.68rem;letter-spacing:0.08em;margin-top:-0.5rem;">Sep 2024</div>
+          <p class="project-desc">Interactive browser game built with HTML, CSS, and JavaScript. Designed for fast play, smart input feedback, and smooth animation on desktop and mobile screens.</p>
+          <div class="project-techs">
+            <span class="tech-tag">HTML</span>
+            <span class="tech-tag">CSS</span>
+            <span class="tech-tag">JavaScript</span>
+            <span class="tech-tag">UI Animation</span>
+          </div>
+        </div>
+
+        <!-- Modern Template -->
+        <div class="project-card reveal">
+          <div class="project-header">
+            <div class="project-icon">🧩</div>
+            <div class="project-links">
+              <a href="https://github.com/AbanobNabeh/ModernTemplate" target="_blank" class="project-link" title="GitHub">⌥</a>
+              <a href="https://abanobnabeh.github.io/modern-template" target="_blank" class="project-link" title="Live Demo">↗</a>
+            </div>
+          </div>
+          <div style="display:flex;align-items:center;gap:0.75rem;flex-wrap:wrap;">
+            <div class="project-name">Modern Template</div>
+            <span class="tech-tag" style="background: rgba(56,189,248,0.08);border-color: rgba(56,189,248,0.22);color: var(--accent);">Frontend</span>
+          </div>
+          <div style="color:var(--text3);font-family:'Space Mono',monospace;font-size:0.68rem;letter-spacing:0.08em;margin-top:-0.5rem;">Nov 2024</div>
+          <p class="project-desc">Responsive HTML/CSS layout crafted for modern landing pages and dashboards. Focused on clean hierarchy, consistent spacing, and polished visual rhythm.</p>
+          <div class="project-techs">
+            <span class="tech-tag">HTML</span>
+            <span class="tech-tag">CSS</span>
+            <span class="tech-tag">Responsive</span>
+            <span class="tech-tag">Design System</span>
+          </div>
+        </div>
+
+        <!-- Special Design -->
+        <div class="project-card reveal">
+          <div class="project-header">
+            <div class="project-icon">🎨</div>
+            <div class="project-links">
+              <a href="https://github.com/AbanobNabeh/SpecialDesign" target="_blank" class="project-link" title="GitHub">⌥</a>
+              <a href="https://abanobnabeh.github.io/special-design" target="_blank" class="project-link" title="Live Demo">↗</a>
+            </div>
+          </div>
+          <div style="display:flex;align-items:center;gap:0.75rem;flex-wrap:wrap;">
+            <div class="project-name">Special Design</div>
+            <span class="tech-tag" style="background: rgba(56,189,248,0.08);border-color: rgba(56,189,248,0.22);color: var(--accent);">Frontend</span>
+          </div>
+          <div style="color:var(--text3);font-family:'Space Mono',monospace;font-size:0.68rem;letter-spacing:0.08em;margin-top:-0.5rem;">Dec 2024</div>
+          <p class="project-desc">Advanced UI concept with experimental layout structure and refined CSS detail. Showcases creative spacing, glassmorphism accents, and polished visual presentation.</p>
+          <div class="project-techs">
+            <span class="tech-tag">HTML</span>
+            <span class="tech-tag">CSS</span>
+            <span class="tech-tag">UX Design</span>
+            <span class="tech-tag">Creative UI</span>
           </div>
         </div>
 
